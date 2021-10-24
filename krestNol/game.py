@@ -9,7 +9,7 @@ def hod(sign):
         except:
             print(' Недопустимое значение, вы ввели не число')
             continue
-        if coll not in range(0,3):
+        if coll not in range(0, 3):
             print(' Недопустимое значение, введите значение от 1 до 3')
             continue
         if row not in range(0, 3):
@@ -22,7 +22,7 @@ def hod(sign):
             correct_value = True
 
 
-def checkForWin(cntr):
+def checkforwin(cntr):
     for n in range(3):
         if Field[n] == (['o', 'o', 'o'] or ['x', 'x', 'x']) or (Field[0][n] == Field[1][n] == Field[2][n] != '-'):
             return 'win'
@@ -43,11 +43,11 @@ for i in range(10):
     counter += 1
     hod(turn)
     for j in range(3):
-        print(Field[j])
-    if checkForWin(counter) == 'win':
+        print(' | '.join(Field[j]))
+    if checkforwin(counter) == 'win':
         print(f'{turn} победили, поздравляем!')
         exit()
-    elif checkForWin(counter) == 'draw':
+    elif checkforwin(counter) == 'draw':
         print(f'Ничья!')
         exit()
     else:
@@ -55,7 +55,7 @@ for i in range(10):
             turn = 'x'
         else:
             turn = 'o'
-
+        print(f'Ходят "{turn}"')
 
 
 
