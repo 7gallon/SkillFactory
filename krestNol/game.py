@@ -1,8 +1,8 @@
 def hod(sign):
     correct_value = False
     while not correct_value:
-        coll = input("Введите значение по вертикали: ")
-        row = input("Введите значение по горизонтали: ")
+        coll = input("Введите значение по вертикали (1 - 3): ")
+        row = input("Введите значение по горизонтали (1 - 3): ")
         try:
             coll = int(coll) - 1
             row = int(row) - 1
