@@ -7,13 +7,10 @@ def hod(sign):
             coll = int(coll) - 1
             row = int(row) - 1
         except:
-            print(' Недопустимое значение, вы ввели не число')
+            print('Недопустимое значение, вы ввели не число')
             continue
-        if coll not in range(0, 3):
-            print(' Недопустимое значение, введите значение от 1 до 3')
-            continue
-        if row not in range(0, 3):
-            print(' Недопустимое значение, введите значение от 1 до 3')
+        if (coll not in range(0, 3)) or (row not in range(0, 3)):
+            print('Недопустимое значение, введите значение от 1 до 3')
             continue
         elif Field[coll][row] in 'xo':
             print('Клетка занята!')
@@ -45,7 +42,7 @@ for i in range(10):
     for j in range(3):
         print(' | '.join(Field[j]))
     if checkforwin(counter) == 'win':
-        print(f'{turn} победили, поздравляем!')
+        print(f'"{turn}" победили, поздравляем!')
         exit()
     elif checkforwin(counter) == 'draw':
         print(f'Ничья!')
