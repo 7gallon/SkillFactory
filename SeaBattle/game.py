@@ -1,5 +1,6 @@
 from random import randint
 
+
 class BoardException(Exception):
     pass
 
@@ -17,10 +18,6 @@ class CantPlaceShipException(BoardException):
 class SameShotException(BoardException):
     def __str__(self):
         return ' В эту клетку уже стреляли! '
-
-
-class WrongShipException(BoardOutException):
-    pass
 
 
 class NotEmplementedError(BoardOutException):
@@ -102,11 +99,11 @@ class Board:
                         self.field[cur_dot.dotx][cur_dot.doty] = '.'
                     self.busy.append(cur_dot)
 
-    def hide_ships(self):
-        if self.hid:
-            return []
-        else:
-            return self.shiplist
+#    def hide_ships(self):
+#        if self.hid:
+#            return []
+#        else:
+#            return self.shiplist
 
     def out(self, dot):
         return not((0 <= dot.dotx < self.size) and (0 <= dot.doty < self.size))
@@ -212,21 +209,24 @@ class Game:
         return board
 
     def gb_sure(self):
-        board =  None
+        board = None
         while board is None:
             board = self.gen_board()
         return board
 
+    def print_boards(self):
+        print('-----------------------------')
+        print(' ---== ДОСКА ИГРОКА ==--- ')
+        print(self.pl.board)
+        print('-----------------------------')
+        print(' ---== ДОСКА КОМПЬЮТЕРА ==--- ')
+        print(self.ai.board)
+        print('-----------------------------')
+
     def loop(self):
         turnum = 0
         while True:
-            print('-----------------------------')
-            print(' ---== ДОСКА ИГРОКА ==--- ')
-            print(self.pl.board)
-            print('-----------------------------')
-            print(' ---== ДОСКА КОМПЬЮТЕРА ==--- ')
-            print(self.ai.board)
-            print('-----------------------------')
+            self.print_boards()
             if turnum % 2 == 0:
                 print(' ---== ХОД ИГРОКА! ==--- ')
                 repeat = self.pl.move()
@@ -238,11 +238,13 @@ class Game:
 
             if self.ai.board.shipsalive == 0:
                 print('-----------------------------')
+                self.print_boards()
                 print(' ----=== ВЫ ПОБЕДИЛИ! ===-----')
                 break
 
             if self.pl.board.shipsalive == 0:
                 print('-----------------------------')
+                self.print_boards()
                 print(' ----=== ВЫ ПРОИГРАЛИ! ===-----')
                 break
 
