@@ -1,8 +1,9 @@
 import telebot
-from config import TOKEN, currencies_list
+from config import currencies_list
+from tokens import TBTOKEN
 from extentions import APIException, CurrencyConverter
 
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(TBTOKEN)
 
 
 # Обрабатываются все сообщения, содержащие команды '/start' or '/help'.
