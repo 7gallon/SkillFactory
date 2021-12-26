@@ -1,0 +1,63 @@
+from news.models import *
+
+user1=User.objects.create_user('max011')
+user2=User.objects.create_user('G_A_Alexander')
+
+Author.objects.create(user=user1)
+Author.objects.create(user=user2)
+
+Category.objects.create(name='news')
+Category.objects.create(name='tech')
+Category.objects.create(name='nature')
+Category.objects.create(name='people')
+
+a1=Author.objects.get(id=1)
+a2=Author.objects.get(id=2)
+
+Post.objects.create(author=a1, is_news=True, name='First News', text='What has actualy happened today')
+Post.objects.create(author=a2, is_news=False, name='First Article', text='Article about global warming and poeple who study it')
+Post.objects.create(author=a2, is_news=False, name='Second Article', text='Article about where IT meets nature')
+
+c_news=Category.objects.get(id=1)
+c_tech=Category.objects.get(id=2)
+c_nat=Category.objects.get(id=3)
+c_ppl=Category.objects.get(id=4)
+
+p_news=Post.objects.get(id=1)
+P_NP=Post.objects.get(id=2)
+P_TN=Post.objects.get(id=3)
+
+p_news.category.add(c_news)
+P_NP.category.add(c_nat)
+P_NP.category.add(c_ppl)
+P_TN.category.add(c_tech)
+P_TN.category.add(c_nat)
+
+Comment.objects.create(post=p_news, user=u2, text="Finaly! I'm happy!")
+Comment.objects.create(post=P_NP, user=u1, text="Very inspiring.")
+Comment.objects.create(post=P_NP, user=u2, text="Thanks")
+Comment.objects.create(post=P_TN, user=u1, text="Boring. Didn't make it to the end.")
+
+Comment.objects.get(id=1).like()
+Comment.objects.get(id=1).like()
+Comment.objects.get(id=2).like()
+Comment.objects.get(id=3).like()
+Comment.objects.get(id=4).dislike()
+
+p_news.like()
+p_news.like()
+P_NP.like()
+P_TN.dislike()
+
+a1.update_rating()
+a2.update_rating()
+
+Author.objects.order_by('-rating').values('user__username', 'rating')[0]
+
+post_top=Post.objects.order_by('-rating')[0]
+post_top..values('author__user__date_joined', 'author__rating', 'name')[0]
+post_top.preview()
+
+Comment.objects.filter(post=post_top).values('time_emerged', 'user__username', 'rating')
+
+
