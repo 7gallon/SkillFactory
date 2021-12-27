@@ -1,0 +1,29 @@
+<!--  наследуемся от шаблона default.html, который мы создавали ещё во времена flatpages -->
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+<!-- Название у нас будет News -->
+{% block title %}
+News
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим сам товар, ID которого было передано в адрес -->
+{% block content %}
+        <table>
+            <tr>
+                <td>
+                    <h3><p align = "left">{{ news.name|Censor }}</p></h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p align = "left">{{news.time_emerged|date:'d-M-Y H:i'}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p align = "left">{{news.text|Censor}}</p>
+                </td>
+            </tr>
+        </table>
+{% endblock content %}

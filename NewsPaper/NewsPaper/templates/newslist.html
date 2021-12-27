@@ -1,0 +1,42 @@
+<!--  наследуемся от шаблона default.html, который мы создавали ещё во времена flatpages -->
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+<!-- Название у нас будет products -->
+{% block title %}
+Today's news
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим все товары -->
+{% block content %}
+<h1>Список новостей</h1>
+Всего новостей на странице {{newslist|length}}
+    {% if newslist %}
+        <table>
+            <tr>
+                <td>
+                    <p align = "left">Название</p>
+                </td>
+                <td>
+                    <p align = "left">Дата публикации</p>
+                </td>
+                <td>
+                    <p align = "left">Превью</p>
+                </td>
+            </tr>
+        {% for news in newslist reversed %}
+           <tr>
+                <td>
+                    <h5><p align = "left">{{news.name|Censor}}</p></h5>
+                </td>
+                <td>
+                    <h6><p align = "left">{{news.time_emerged|date:'d M Y'}}</p></h6>
+                </td>
+                <td>
+                    <p align = "left">{{news.text|truncatechars:50|Censor}}</p>
+                </td>
+            </tr>
+         {% endfor %}
+        </table>
+    {% endif %}
+{% endblock content %}
