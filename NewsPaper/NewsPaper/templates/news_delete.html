@@ -1,0 +1,36 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+ 
+{% block title %} Статья для удаления {% endblock title %}
+ 
+{% block content %}
+<h2>Вы действительно хотите удалить эту статью?</h2>
+<table>
+    <thead>
+        <th>
+            <div class="table_head">Название</div>
+        </th>
+        <th>
+            <div class="table_head">Дата публикации</div>
+        </th>
+        <th>
+            <div class="table_head">Превью</div>
+        </th>
+    </thead>
+    <tr>
+        <td>
+            <div class="news_title">{{post.name|title|Censor}}</div>
+        </td>
+        <td>
+            <div class="news_time">{{post.time_emerged|date:'d M Y H:i'}}</div>
+        </td>
+        <td>
+            <div class="news_preview">{{post.text|truncatechars:50|Censor}}</div>
+        </td>
+    </tr>
+</table>
+ 
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Подтвердить"></form>
+{% endblock content %} 

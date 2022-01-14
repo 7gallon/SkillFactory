@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SK
+SECRET_KEY =  SK
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'news',
     'accounts',
+    'django_filters',
 ]
 
 SITE_ID = 1
@@ -134,3 +135,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
+
+# def FILTERS_VERBOSE_LOOKUPS():
+#     from django_filters.conf import DEFAULTS
+#
+#     verbose_lookups = DEFAULTS['VERBOSE_LOOKUPS'].copy()
+#     verbose_lookups.update({
+#         'icontains': 'содержит',
+#         'gt': 'позже',
+#     })
+#     return verbose_lookups

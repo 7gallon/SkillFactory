@@ -4,14 +4,21 @@
 
 <!-- Название у нас будет products -->
 {% block title %}
-Today's news
+News found
 {% endblock title %}
 
 <!-- В контенте на странице мы выводим все товары -->
 {% block content %}
-<div class="news_list_title">Список новостей</div>
-<p align="center">Всего статей на странице {{newslist|length}}</p>
-    {% if newslist %}
+<div class="news_list_title">Поиск новостей</div>
+<p align="center">Всего статей на странице {{newssearch|length}}</p>
+    {% if newssearch %}
+        <hr>
+        <form method="GET">
+            <!-- Published after: <input type="date" value="2021-09-01" name="pubdate" id="pubdate"> -->
+            {{ filter.form }}
+            <input type="submit" value="Найти">
+        </form>
+        <hr>
         <table>
             <tr>
                 <td>
@@ -24,14 +31,10 @@ Today's news
                     <div class="table_head">Превью</div>
                 </td>
             </tr>
-            {% for news in newslist %}
+            {% for news in filter.qs %}
                <tr>
                     <td>
-                        <div class="news_title">
-                            <a href="{% url 'news_detail' news.id %}">{{news.name|Censor}}</a>
-                            <a href="{% url 'news_update' news.id %}"><u>edit</u></a>
-                            <a href="{% url 'news_delete' news.id %}"><u>delete</u></a>
-                        </div>
+                        <div class="news_title">{{news.name|Censor}}</div>
                     </td>
                     <td>
                         <div class="news_time">{{news.time_emerged|date:'d M Y H:i'}}</div>
@@ -42,8 +45,6 @@ Today's news
                 </tr>
             {% endfor %}
         </table>
-        <a href="{% url 'news_add' %}">Добавить статью</a>
-        <a href="{% url 'news_search' %}">Найти статью</a> <br>
         {% if is_paginated %}
             <!-- Если доступна предыдущая страница, то даём ссылку на неё и самую первую страницу -->
             {% if page_obj.has_previous %}

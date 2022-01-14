@@ -1,9 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django.contrib.auth.base_user import AbstractBaseUser
+
+
+# class User(AbstractBaseUser):
+#     class Meta:
+#         verbose_name = ('Пользователь')
+
 
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Автор')
     rating = models.IntegerField(default=0)
 
     def update_rating(self):
@@ -19,17 +26,23 @@ class Author(models.Model):
             self.rating += cp['rating']
         self.save()
 
+    def __str__(self):
+        return f'{self.user.username.title()}'
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
+    def __str__(self):
+        return f'{self.name.title()}'
+
 
 class Post(models.Model):
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='')
     is_news = models.BooleanField(default=True)
-    time_emerged = models.DateTimeField(auto_now_add=True)
+    time_emerged = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     category = models.ManyToManyField(Category, through='PostCategory')
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, verbose_name='Название')
     text = models.TextField()
     rating = models.IntegerField(default=0)
 
@@ -46,6 +59,9 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.name.title()}: {self.preview()}'
+
+    def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с товаром
+        return f'/newslist/{self.id}'
 
 
 class PostCategory(models.Model):
