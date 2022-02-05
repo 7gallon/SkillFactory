@@ -1,0 +1,38 @@
+<!--  наследуемся от шаблона default.html, который мы создавали ещё во времена flatpages -->
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block content %}
+        <table>
+            <tr>
+                <td>
+                    <h2><p align = "left">Username: {{ profile.user.username }}
+                        {% if curr_user == profile.user_id %}
+                            <button><a href="{% url 'profile_update' profile.user_id %}"><u>edit</u></a></button>
+                            <button> <a href="/">Выйти</a> </button>
+                        {% endif %}
+                    </p></h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p align = "left">Имя: {{profile.user.first_name}} {{profile.user.last_name}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p align = "left">email: {{profile.user.email}}</p>
+                </td>
+            </tr>
+           <!--<tr>-->
+                <!--<td>-->
+                    <!--<p align = "left">password: {{profile.user.password}}</p>-->
+                <!--</td>-->
+            <!--</tr>-->
+        </table>
+ {% endblock content %}

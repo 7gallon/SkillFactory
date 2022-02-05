@@ -26,11 +26,9 @@ class PostFilter(FilterSet):
             model = Post
             fields = []
 
-
-            '''
-                {
-                'name': ['icontains'],
-                'time_emerged': ['gt'],
-                'author__user__username': ['icontains'],
-                }
-            '''
+                # {
+                # 'name': ['icontains'],
+                # 'time_emerged': ['gt'],
+                # 'author__user__username': ['icontains'],
+                # }
+                #

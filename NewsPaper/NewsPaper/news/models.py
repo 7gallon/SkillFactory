@@ -29,6 +29,9 @@ class Author(models.Model):
     def __str__(self):
         return f'{self.user.username.title()}'
 
+    # def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с товаром
+    #     return f'/newslist/profile/{self.id}'
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
@@ -38,7 +41,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='')
+    author = models.ForeignKey(Author, on_delete=models.CASCADE,)
     is_news = models.BooleanField(default=True)
     time_emerged = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     category = models.ManyToManyField(Category, through='PostCategory')

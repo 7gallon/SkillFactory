@@ -23,6 +23,9 @@ Today's news
                 <td>
                     <div class="table_head">Превью</div>
                 </td>
+                <td>
+                    <div class="table_head">Автор</div>
+                </td>
             </tr>
             {% for news in newslist %}
                <tr>
@@ -38,6 +41,15 @@ Today's news
                     </td>
                     <td>
                         <div class="news_preview">{{news.text|truncatechars:50|Censor}}</div>
+                    </td>
+                     <td>
+                        <div class="news_time">
+                            {% if is_authed %}
+                                <a href="{% url 'author_detail' news.author_id %}">{{news.author}}</a>
+                            {% else %}
+                                {{news.author}}
+                            {% endif %}
+                        </div>
                     </td>
                 </tr>
             {% endfor %}

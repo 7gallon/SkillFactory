@@ -1,0 +1,12 @@
+<!--  наследуемся от шаблона default.html, который мы создавали ещё во времена flatpages -->
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+
+{% block title %}
+Success
+{% endblock title %}
+
+{% block content %}
+<h3>Success</h3>
+{% endblock content %}
