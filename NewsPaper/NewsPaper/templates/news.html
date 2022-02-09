@@ -25,5 +25,22 @@ News
                     <p align = "left">{{news.text|Censor}}</p>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <p align = "left">
+                        {% for cat in news.category.all %}
+                            <div class="news_time">#{{cat.name}}</div>
+                        {% endfor %}
+                    </p>
+                </td>
+            </tr>
         </table>
+    {% for cat in cat_obj %}
+        {% if not is_subscribed %}
+            <p>
+                <button>
+                    <a href="{% url 'subscribe_me' cat.category.id %}">Подписаться!</a>
+                </button>  на новости в категории <u>{{cat.category.name}}</u></p>
+        {% endif %}
+    {% endfor %}
  {% endblock content %}

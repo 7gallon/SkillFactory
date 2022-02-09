@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('newslist/', include(('news.urls', 'newslist'), namespace='newslist')), # было только news.urls
     path('newslist/', include('news.urls')),
     path('accounts/', include('allauth.urls')),
     path('', include('protect.urls')),

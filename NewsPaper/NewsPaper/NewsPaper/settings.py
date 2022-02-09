@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'news',
+    'news.apps.NewsConfig',
     'django_filters',
+    'django_apscheduler',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -93,11 +94,22 @@ ACCOUNT_FORMS = {'signup': 'news.forms.BasicSignupForm'}
 
 WSGI_APPLICATION = 'NewsPaper.wsgi.application'
 
+DEFAULT_FROM_EMAIL = 'sev7engallon@yandex.ru'
+
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # было none
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'sev7engallon'
+EMAIL_HOST_PASSWORD = 'Y248NH39rus'
+EMAIL_USE_SSL = True
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

@@ -26,6 +26,9 @@ Today's news
                 <td>
                     <div class="table_head">Автор</div>
                 </td>
+                <td>
+                    <div class="table_head">Категории</div>
+                </td>
             </tr>
             {% for news in newslist %}
                <tr>
@@ -51,7 +54,12 @@ Today's news
                             {% endif %}
                         </div>
                     </td>
-                </tr>
+                    <td>
+                        {% for cat in news.category.all %}
+                            <div class="news_preview">{{cat.name}}</div>
+                        {% endfor %}
+                    </td>
+                 </tr>
             {% endfor %}
         </table>
         <a href="{% url 'news_add' %}">Добавить статью</a>
