@@ -88,6 +88,8 @@ class NewsAddView(CreateView, PermissionRequiredMixin):
         # category_id = 1
         category_id = self.request.POST.get('category')
         post_text = self.request.POST.get('text')
+        post_name = self.request.POST.get('name')
+        text_content = f' | {post_name} | \n{post_text[:50]}...'
         print(f'category_id {category_id}')
         print(f'CategoryUser.objects {CategoryUser.objects.filter(category=category_id).values("user_id")}')
         cat_subscribers_obj = CategoryUser.objects.filter(category=category_id).values('user_id')
@@ -97,13 +99,15 @@ class NewsAddView(CreateView, PermissionRequiredMixin):
             print(suber)
             msg = EmailMultiAlternatives(
                 subject=f'News update on you favourite categories',
-                body=f'{post_text[:50]}',
+                # body=f'{post_text[:50]}',
+                body='post_name post_text',
                 from_email='sev7engallon@yandex.ru',
                 to=[suber.email]
             )
-            msg.attach_alternative(html_content, "text/html")
+            # msg.attach_alternative(html_content, "text/html")
+            msg.attach_alternative(text_content, "text/plain")
             msg.send()
-        return redirect('/newslist/')
+        return super().form_valid(form)
 
 
 class NewsUpdateView(UpdateView, PermissionRequiredMixin):
