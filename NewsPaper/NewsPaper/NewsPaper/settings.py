@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from .emailpwd import emailpwd
 # from seckey import SK
 import os
 
@@ -105,7 +106,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # было none
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'sev7engallon'
-EMAIL_HOST_PASSWORD = 'Y248NH39rus'
+EMAIL_HOST_PASSWORD = emailpwd
 EMAIL_USE_SSL = True
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
