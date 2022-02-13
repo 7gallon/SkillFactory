@@ -13,6 +13,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
+from .tasks import new_post_email, weekly_post_email
 
 
 class PostView(ListView):
@@ -29,6 +30,9 @@ class PostView(ListView):
         # print(Category.objects.filter(id = cat_ids).values('name'))
         # context['news_in_category'] = Category.objects.filter(id = cat_ids).values('name')
         return context
+
+    # def get(self, request, *args, **kwargs):
+    #     weekly_post_email.apply_async(expires=600)
 
 
 class CategoryPostView(ListView):
@@ -97,16 +101,7 @@ class NewsAddView(CreateView, PermissionRequiredMixin):
         for suber_id in cat_subscribers_obj:
             suber = User.objects.get(id=suber_id['user_id'])
             print(suber)
-            msg = EmailMultiAlternatives(
-                subject=f'News update on you favourite categories',
-                # body=f'{post_text[:50]}',
-                body='post_name post_text',
-                from_email='sev7engallon@yandex.ru',
-                to=[suber.email]
-            )
-            # msg.attach_alternative(html_content, "text/html")
-            msg.attach_alternative(text_content, "text/plain")
-            msg.send()
+            new_post_email.delay(text_content, suber_id)
         return super().form_valid(form)
 
 

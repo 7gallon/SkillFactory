@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from .emailpwd import emailpwd
-# from seckey import SK
+# from .seckey import SK
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -111,6 +111,12 @@ EMAIL_USE_SSL = True
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
+
+CELERY_BROKER_URL = 'redis://:Y1k2ZEkOoBlmT5x37xqi71wwFmlywYNR@redis-13830.c239.us-east-1-2.ec2.cloud.redislabs.com:13830/0'
+CELERY_RESULT_BACKEND = 'redis://:Y1k2ZEkOoBlmT5x37xqi71wwFmlywYNR@redis-13830.c239.us-east-1-2.ec2.cloud.redislabs.com:13830/1'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
