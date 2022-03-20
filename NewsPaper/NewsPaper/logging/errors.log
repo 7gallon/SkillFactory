@@ -1,0 +1,72 @@
+2022-03-20 11:09:49,248 ERROR Internal Server Error: /newslist/ C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\utils\log.py (<class 'django.urls.exceptions.NoReverseMatch'>, NoReverseMatch("Reverse for 'author_detail' not found. 'author_detail' is not a valid view function or pattern name."), <traceback object at 0x000001A7E1746340>)
+Traceback (most recent call last):
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 176, in render
+    return self._render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 168, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 977, in render
+    return SafeString(''.join([
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 978, in <listcomp>
+    node.render_annotated(context) for node in self
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 938, in render_annotated
+    return self.render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\loader_tags.py", line 153, in render
+    return compiled_parent._render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 168, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 977, in render
+    return SafeString(''.join([
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 978, in <listcomp>
+    node.render_annotated(context) for node in self
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 938, in render_annotated
+    return self.render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 977, in render
+    return SafeString(''.join([
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 978, in <listcomp>
+    node.render_annotated(context) for node in self
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 938, in render_annotated
+    return self.render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\defaulttags.py", line 295, in render
+    return nodelist.render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 977, in render
+    return SafeString(''.join([
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 978, in <listcomp>
+    node.render_annotated(context) for node in self
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 938, in render_annotated
+    return self.render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\defaulttags.py", line 214, in render
+    nodelist.append(node.render_annotated(context))
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 938, in render_annotated
+    return self.render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\defaulttags.py", line 295, in render
+    return nodelist.render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 977, in render
+    return SafeString(''.join([
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 978, in <listcomp>
+    node.render_annotated(context) for node in self
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\base.py", line 938, in render_annotated
+    return self.render(context)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\template\defaulttags.py", line 442, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\urls\resolvers.py", line 729, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'author_detail' not found. 'author_detail' is not a valid view function or pattern name.
+2022-03-20 11:09:49,255 ERROR "GET /newslist/ HTTP/1.1" 500 274289 C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\core\servers\basehttp.py None
+2022-03-20 11:36:46,744 ERROR "GET /newslist/ HTTP/1.1" 500 275308 C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\core\servers\basehttp.py None
+2022-03-20 11:45:54,449 ERROR "GET /newslist/ HTTP/1.1" 500 145 C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\core\servers\basehttp.py None
+2022-03-20 11:46:08,871 ERROR "GET /newslist/ HTTP/1.1" 500 145 C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\core\servers\basehttp.py None
+2022-03-20 11:46:34,113 ERROR "GET /newslist/ HTTP/1.1" 500 275000 C:\Users\kgpa\PycharmProjects\NewsPaper\venv\lib\site-packages\django\core\servers\basehttp.py None

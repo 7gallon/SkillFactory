@@ -14,6 +14,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from .tasks import new_post_email, weekly_post_email
+from django.core.cache import cache
 
 
 class PostView(ListView):
@@ -65,6 +66,14 @@ class PostDetail(DetailView):
         context['cat_obj'] = PostCategory.objects.filter(post=id)
         return context
 
+    def get_object(self, *args, **kwargs):
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None)
+        # если объекта нет в кэше, то получаем его и записываем в кэш
+        if not obj:
+            obj = super().get_object(*args, **kwargs)
+            cache.set(f'post-{self.kwargs["pk"]}', obj)
+        return obj
+
 
 class PostSearch(ListView):
     model = Post
@@ -101,7 +110,7 @@ class NewsAddView(CreateView, PermissionRequiredMixin):
         for suber_id in cat_subscribers_obj:
             suber = User.objects.get(id=suber_id['user_id'])
             print(suber)
-            new_post_email.delay(text_content, suber_id)
+            # new_post_email.delay(text_content, suber_id) TODO uncomment
         return super().form_valid(form)
 
 

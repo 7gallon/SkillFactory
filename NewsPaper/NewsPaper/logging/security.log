@@ -1,0 +1,4 @@
+
+2022-03-20 11:23:16,825 WARNING log Forbidden (CSRF token missing.): /newslist/add/
+2022-03-20 11:23:52,360 WARNING log Forbidden (CSRF token missing.): /newslist/add/
+2022-03-20 11:23:58,633 WARNING log Forbidden (CSRF token missing.): /newslist/add/

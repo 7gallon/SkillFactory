@@ -30,6 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
+ADMINS = [('Alexander', 'sev7engallon@yandex.ru')]
 
 # Application definition
 
@@ -128,6 +129,16 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': 'pwd',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     },
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -174,6 +185,13 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'cache_files'),
+        'TIMEOUT': 60,
+    }
+}
 
 # def FILTERS_VERBOSE_LOOKUPS():
 #     from django_filters.conf import DEFAULTS
@@ -184,3 +202,93 @@ STATICFILES_DIRS = [
 #         'gt': 'позже',
 #     })
 #     return verbose_lookups
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'style' : '{',
+    'formatters': {
+        'simple': {
+            'format': '%(asctime)s %(levelname)s %(message)s'
+        },
+        'warnup': {
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s'
+        },
+        'errup': {
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s %(exc_info)s'
+        },
+        'general': {
+            'format': '%(asctime)s %(levelname)s %(module)s %(message)s'
+        },
+        'mails': {
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s'
+        }
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+    },
+    'handlers': {
+        'console_simple': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+            'filters': ['require_debug_true']
+        },
+        'console_warnup': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'warnup',
+            'filters': ['require_debug_true']
+        },
+        'console_errup': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'errup',
+            'filters': ['require_debug_true']
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'logging/general.log',
+            'formatter': 'general'
+        },
+        'fileErr': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'logging/errors.log',
+            'formatter': 'errup'
+        },
+        'fileSecurity': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'logging/security.log',
+            'formatter': 'general'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'mails',
+            'filters': ['require_debug_false'],
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console_simple', 'console_warnup', 'console_errup', 'file', 'fileErr'],
+            'propagate': True,
+        },
+        'django.security': {
+            'handlers': ['fileSecurity'],
+            'propagate': True,
+        },
+    'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        }
+    }
+}

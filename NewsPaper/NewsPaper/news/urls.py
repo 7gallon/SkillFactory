@@ -1,10 +1,11 @@
 from django.urls import path
 from .views import PostView, CategoryPostView, PostDetail, PostSearch, NewsAddView, NewsUpdateView, NewsDeleteView, AuthorDetail, ProfileUpdateView
 from .views import make_author, subscribe_me
+from django.views.decorators.cache import cache_page
 
 urlpatterns = [
-    path('', PostView.as_view()),
-    path('category/<int:pk>', CategoryPostView.as_view()),
+    path('', cache_page(60)(PostView.as_view())),
+    path('category/<int:pk>', cache_page(60*5)(CategoryPostView.as_view())),
     path('<int:pk>', PostDetail.as_view(), name='news_detail'),
     path('newssearch/', PostSearch.as_view(), name='news_search'),
     path('add/', NewsAddView.as_view(), name='news_add'),
