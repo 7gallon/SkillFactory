@@ -1,0 +1,36 @@
+<!--  наследуемся от шаблона default.html, который мы создавали ещё во времена flatpages -->
+{% extends 'default.html' %}
+
+
+
+{% block title %}
+'Profile'
+{% endblock title %}
+
+{% block content %}
+        <table>
+            <tr>
+                <td>
+                    <h2><p align = "left">Username: {{ profile.username }}
+                            <button><a href="{% url 'profile_update' profile.id %}"><u>'edit'</u></a></button>
+                            <button> <a href="{% url 'account_logout' %}">'Sign out'</a> </button>
+                    </p></h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p align = "left">Ваше имя: {{profile.first_name}} {{profile.last_name}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p align = "left">email: {{profile.email}}</p>
+                </td>
+            </tr>
+           <!--<tr>-->
+                <!--<td>-->
+                    <!--<p align = "left">password: {{profile.user.password}}</p>-->
+                <!--</td>-->
+            <!--</tr>-->
+        </table>
+ {% endblock content %}

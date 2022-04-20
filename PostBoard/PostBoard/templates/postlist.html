@@ -1,0 +1,72 @@
+{% extends 'default.html' %}
+{% block title %}
+Recent posts...
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Blog entries-->
+        <div class="col-lg-8">
+            <!-- Nested row for non-featured blog posts-->
+            <div class="row">
+                {% for post in postlist %}
+                <div class="col-lg-6">
+                    <!-- Blog post-->
+                    <div class="card mb-4">
+                        <a href="{% url 'post_detail' post.id %}">
+                            <img class="card-img-top" src="/media/{{post.image}}" alt="{{ post.name }}" />
+                        </a>
+                        <div class="card-body">
+                            <div class="small text-muted">{{post.time_emerged|date:'d M Y H:i'}}</div>
+                            <h2 class="card-title h4">{{post.name}}</h2>
+                            <p class="card-text">{{post.text|truncatewords:50}}</p>
+                            <a class="btn btn-primary" href="{% url 'post_detail' post.id %}">Read more →</a>
+                            {% if curr_user == author %}
+                                    <a href="{% url 'post_delete' post.id %}"><u>delete</u></a>
+                                    <a href="{% url 'post_update' post.id %}"><u>edit</u></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Pagination-->
+            {% if is_paginated %}
+            <nav aria-label="Pagination">
+                <hr class="my-0" />
+                <ul class="pagination justify-content-center my-4">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item active" aria-current="page"><a class="page-link" href="?page=1">1</a></li>
+                    {% endif %}
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                        <li class="page-item"><a class="page-link" href="{{ num }}">{{ num }}</a></li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li class="page-item disabled"><a class="?page={{ page_obj.paginator.num_pages }}" href="#!">Last</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+            <!-- Side widget-->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header">Профиль</div>
+                <div class="card-body">
+                    {% if is_authed %}
+                        <a href="{% url 'author_detail' profile.id %}">{{profile.username}}</a>
+                        <a href="{% url 'msg_list' %}">Отклики</a>
+                    {% else %}
+                        <p>Sign in to view details</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
