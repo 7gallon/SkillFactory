@@ -1,0 +1,22 @@
+table {
+    margin-bottom: 20px;
+}
+
+.htime {
+    font-size: smaller;
+    color: #67b0b0;
+    margin-top: 20px;
+}
+
+.htemp {
+    font-size: x-large;
+    color: #b45485;
+    font-weight: bold;
+}
+
+.hmain {
+    font-size: x-large;
+    color: #6ca5d3;
+    font-weight: bold;
+
+}

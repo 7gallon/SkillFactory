@@ -1,0 +1,26 @@
+h1 {
+    font-size: 3rem;
+    color: darkslategray;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    color: #1e4c57;
+    margin: 10px;
+}
+
+.names {
+    font-size: larger;
+    font-weight: bolder;
+    color: #1e4c57;
+    margin: 10px;
+
+}
+
+.nowWeather {
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
