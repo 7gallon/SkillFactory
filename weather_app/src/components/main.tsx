@@ -5,6 +5,7 @@ import Alerts from "./Alerts";
 import "../styles/main.css"
 import {Component} from "react";
 import axios from "axios";
+import api_key from "./TKN";
 
 
 function Main()  {
@@ -37,7 +38,6 @@ function Main()  {
     }
 
     if(!curTemp) {
-        const api_key = "515a1d0a66987e7fccc5c6907645a4ca";
         const url_ = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=metric&appid=${api_key}`;
         // console.log(url_);
         axios.get(url_).then(weather => {

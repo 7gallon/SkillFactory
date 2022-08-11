@@ -6,6 +6,7 @@ import Hforecasts from "./hforecast";
 import Wforecasts from "./weekcasts";
 
 import "../styles/forecasts.css"
+import api_key from "./TKN";
 
 
 
@@ -17,7 +18,6 @@ function Forecasts(props) {
     const timestamps = 16;
 
     if(!forecast.length) {
-        const api_key = "515a1d0a66987e7fccc5c6907645a4ca";
         const url_ = `https://api.openweathermap.org/data/2.5/forecast?lat=${props.lat}&lon=${props.lng}&cnt=${timestamps}&units=metric&appid=${api_key}`;
         axios.get(url_).then(res => {
             // console.log(res.data.list);
@@ -27,7 +27,6 @@ function Forecasts(props) {
     }
 
     if(!weekcast.length) {
-        const api_key = "515a1d0a66987e7fccc5c6907645a4ca";
         const url_ = `https://api.openweathermap.org/data/2.5/forecast?lat=${props.lat}&lon=${props.lng}&units=metric&appid=${api_key}`;
         axios.get(url_).then(res => {
             // console.log(res.data.list);
