@@ -1,0 +1,13 @@
+html, body {
+    margin: 0px;
+}
+
+div {
+    padding: 0px;
+    margin: 0px;
+}
+
+h1 {
+    text-align: center;
+    /*color: azure;*/
+}
