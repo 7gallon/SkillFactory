@@ -21,9 +21,9 @@ function LeftPanel(props) {
     return (
         <div>
             <ul>
-                <li onClick={props.getRecipe(1)}>#БöтеRБроtt --></li>
-                <li onClick={props.getRecipe(2)}>#суП? --></li>
-                <li onClick={props.getRecipe(3)}>#ужиN --></li>
+                <li onClick={() => props.getRecipe(1)}>#БöтеRБроtt --></li>
+                <li onClick={() => props.getRecipe(2)}>#суП? --></li>
+                <li onClick={() => props.getRecipe(3)}>#ужиN --></li>
             </ul>
         </div>
     )
